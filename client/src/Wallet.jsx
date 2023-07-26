@@ -1,6 +1,10 @@
 import server from "./server";
+import { useState } from "react";
 
-function Wallet({ address, setAddress, balance, setBalance }) {
+function Wallet({ balance, setBalance }) {
+  
+  const [address, setAddress] = useState("");
+
   async function onChange(evt) {
     const address = evt.target.value;
     setAddress(address);
@@ -19,8 +23,12 @@ function Wallet({ address, setAddress, balance, setBalance }) {
       <h1>Your Wallet</h1>
 
       <label>
-        Wallet Address
-        <input placeholder="Type an address, for example: 0x1" value={address} onChange={onChange}></input>
+        Address
+        <input
+          placeholder="Type an address, for example: 83ab9bbd..."
+          value={address}
+          onChange={onChange}>
+        </input>
       </label>
 
       <div className="balance">Balance: {balance}</div>

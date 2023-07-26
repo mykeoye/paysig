@@ -1,9 +1,10 @@
 import { useState } from "react";
 import server from "./server";
 
-function Transfer({ address, setBalance }) {
+function Transfer({ setBalance }) {
   const [sendAmount, setSendAmount] = useState("");
   const [recipient, setRecipient] = useState("");
+  const [signature, setSignature] = useState("");
 
   const setValue = (setter) => (evt) => setter(evt.target.value);
 
@@ -14,7 +15,7 @@ function Transfer({ address, setBalance }) {
       const {
         data: { balance },
       } = await server.post(`send`, {
-        sender: address,
+        signature,  // comprises of the hash|signature with the pipe as a separator
         amount: parseInt(sendAmount),
         recipient,
       });
@@ -38,11 +39,20 @@ function Transfer({ address, setBalance }) {
       </label>
 
       <label>
-        Recipient
+        Destination address
         <input
-          placeholder="Type an address, for example: 0x2"
+          placeholder="Type an address, for example: 83ab9bbd..."
           value={recipient}
           onChange={setValue(setRecipient)}
+        ></input>
+      </label>
+
+      <label>
+        Signature
+        <input
+          placeholder="Type signature should be of form hash|signature"
+          value={signature}
+          onChange={setValue(setSignature)}
         ></input>
       </label>
 

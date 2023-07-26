@@ -4,6 +4,18 @@ This project is my solution to the ethereum bootcamp week 1 programming assignme
 which uses digital signatures to provide a secure means of facilitating transfers betwen different wallet addresses. It ties together concepts from cryptography
 like digital signatures, ECDSA (Elliptic Curve Digital Signature Algorithm) and public key derivation. Concepts that are prevalent in securing transactions,
 from existential forgeries. Distributed consensus is not a core concern for this project.
+
+
+### Test accounts / wallets
+The file `test-keys.txt` contains wallets with their corresponding public/private key pairs, which can be used to test the application. To
+view the balance for a particular wallet simply copy and paste the wallet address into the wallet input screen. 
+
+Transfers are also easy. For this you will need to sign an intent (message) using your private key. The `server/scripts` folder contains two
+useful scripts to help with this. `keygen.js` can be used to generate your own `public/private` key and wallet, while `signer.js` can be used
+to generate a digital signature.
+
+The signature takes the format `hash|signature_object` encoded in hex. Running the files is easy, just run `node scripts/<filename>` from the
+root of the `server` project. The resulting signature is printed to console.
  
 ### Client build instructions
 
